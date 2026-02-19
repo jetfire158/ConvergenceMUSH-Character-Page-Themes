@@ -213,4 +213,5 @@ expandable-item:focus-within::part(header){
 }
 
 /* gallery & logs headings */
-.gallery h3,.logs h3 {color:red;font-weight:600;font-family:'Rajdhani',sans-serif;}
+.gallery h3,.logs h3 {color:red;font-weight:500;font-family:'Rajdhani',sans-serif;}
+
