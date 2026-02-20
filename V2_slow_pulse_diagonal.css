@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600&display=swap');
+
+body{--primary-bg:#2b0004;--secondary-bg:#000000b8;}
+
+main{
+position:relative;
+overflow:hidden;
+clip-path:inset(0);
+background:transparent !important;
+color:red;
+font-family:'Rajdhani',sans-serif;
+}
+
+/* background image */
+body::before{
+content:"";
+position:fixed;
+inset:0;
+z-index:-2;
+pointer-events:none;
+background:url('https://i.imgur.com/v6ZLUBh.jpeg') center/cover no-repeat;
+}
+
+/* ================= ENERGY PULSE LAYER (REPLACES LINEAR GRADIENT) ================= */
+
+main::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100vw;
+height:100vh;
+pointer-events:none;
+z-index:0;
+
+background:
+radial-gradient(
+circle at 50% 50%,
+rgba(255,90,90,.55) 0%,
+rgba(255,60,60,.35) 20%,
+rgba(255,40,40,.18) 40%,
+transparent 65%
+);
+
+background-repeat:no-repeat;
+
+background-size:
+26% 26%,22% 22%,28% 28%,20% 20%,24% 24%,
+23% 23%,25% 25%,25% 25%,21% 21%,21% 21%;
+
+animation:centerPulse 5s ease-out infinite;
+
+-webkit-mask-image:url("https://gist.githubusercontent.com/jetfire158/b78bee35bd71c599b6cd8bdd88493c4a/raw/4b2a314b579a4b672c4c1dbc4f702a54afe77d45/electric_circuit.svg");
+mask-image:url("https://gist.githubusercontent.com/jetfire158/b78bee35bd71c599b6cd8bdd88493c4a/raw/4b2a314b579a4b672c4c1dbc4f702a54afe77d45/electric_circuit.svg");
+-webkit-mask-size:100% 100%;
+mask-size:100% 100%;
+-webkit-mask-repeat:no-repeat;
+mask-repeat:no-repeat;
+-webkit-mask-origin:border-box;
+mask-origin:border-box;
+
+-webkit-mask-clip:border-box;
+mask-clip:border-box;
+mix-blend-mode:screen;
+-webkit-mask-position:center;
+mask-position:center;
+opacity:.6;
+
+filter:blur(.6px)
+brightness(1.1)
+contrast(1.15)
+drop-shadow(0 0 3px rgba(255,40,40,.25))
+drop-shadow(0 0 12px rgba(255,20,20,.10));
+}
+
+/* depth fade */
+main::after{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100vw;
+height:100vh;
+inset:0;
+pointer-events:none;
+z-index:0;
+
+/* faint circuit color */
+background-color:#ff2a2a;
+-webkit-mask-origin:border-box;
+mask-origin:border-box;
+
+-webkit-mask-clip:border-box;
+mask-clip:border-box;
+-webkit-mask-image:url("https://gist.githubusercontent.com/jetfire158/b78bee35bd71c599b6cd8bdd88493c4a/raw/4b2a314b579a4b672c4c1dbc4f702a54afe77d45/electric_circuit.svg");
+mask-image:url("https://gist.githubusercontent.com/jetfire158/b78bee35bd71c599b6cd8bdd88493c4a/raw/4b2a314b579a4b672c4c1dbc4f702a54afe77d45/electric_circuit.svg");
+
+-webkit-mask-size:100% 100%;
+mask-size:100% 100%;
+-webkit-mask-repeat:no-repeat;
+mask-repeat:no-repeat;
+-webkit-mask-position:center;
+mask-position:center;
+opacity:.07;
+mix-blend-mode:screen;
+
+}
+
+/* panels above circuitry */
+.character .profile,
+expandable-item{
+position:relative;
+z-index:2;
+}
+
+expandable-item::part(header){
+background:rgba(0,0,0,.4);
+backdrop-filter:blur(4px);
+border:1px solid rgba(204,255,0,.2);
+font-weight:500;
+}
+
+expandable-item::part(name){
+color:red;
+font-weight:600;
+letter-spacing:.05em;
+}
+
+expandable-item::part(summary){
+color:red;
+font-weight:400;
+}
+
+expandable-item::part(base){
+background-color:rgba(0,0,0,.4);
+border:1px solid rgba(204,255,0,.2);
+}
+
+expandable-item::part(body){
+color:white;
+background-color:rgba(0,0,0,.4);
+border:1px solid rgba(204,255,0,.2);
+font-weight:300;
+}
+
+expandable-item::part(arrow){
+color:yellow;
+}
+
+main .character .profile{
+background-color:rgba(0,0,0,.8);
+color:red;
+border:1px solid rgba(204,255,0,.5);
+font-weight:300;
+}
+
+.name{display:none;}
+
+expandable-item::part(base),
+expandable-item::part(header){
+border:1px solid rgba(255,255,255,.25);
+transition:border-color .25s ease,box-shadow .25s ease;
+}
+
+expandable-item:hover::part(base),
+expandable-item:hover::part(header),
+expandable-item:focus-within::part(base),
+expandable-item:focus-within::part(header){
+border-color:rgba(255,255,255,.8);
+box-shadow:0 0 10px rgba(255,255,255,.6);
+}
+.character .profile,
+expandable-item{
+position:relative;
+z-index:5;
+}
+
+.gallery h3,.logs h3{
+color:red;
+font-weight:600;
+font-family:'Rajdhani',sans-serif;
+}
+
+/* ================= NEW ENERGY ANIMATION ================= */
+
+@keyframes centerPulse{
+
+0%{
+opacity:0;
+background-size:0% 0%;
+filter:blur(.6px) brightness(1.6);
+}
+
+/* fade in */
+8%{
+opacity:1;
+}
+
+/* expansion */
+60%{
+background-size:220% 220%;
+filter:blur(1.6px) brightness(1.25);
+}
+
+/* edge fade */
+85%{
+opacity:.25;
+}
+
+/* disappear */
+100%{
+opacity:0;
+background-size:260% 260%;
+}
